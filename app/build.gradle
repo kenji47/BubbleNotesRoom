@@ -1,0 +1,98 @@
+apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
+
+android {
+    compileSdkVersion 26
+    buildToolsVersion "26.0.1"
+    defaultConfig {
+        applicationId "com.kenji1947.bubblenotesroom"
+        minSdkVersion 15
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Support
+    compile "com.android.support:appcompat-v7:$supportLibrary"
+    compile "com.android.support:support-v4:$supportLibrary"
+    compile "com.android.support:design:$supportLibrary"
+    compile "com.android.support:cardview-v7:$supportLibrary"
+    compile "com.android.support:recyclerview-v7:$supportLibrary"
+
+    compile "com.android.support.constraint:constraint-layout:$constraintLayout"
+
+    //Moxy
+    compile "com.arello-mobile:moxy:$moxy"
+    annotationProcessor "com.arello-mobile:moxy-compiler:$moxy"
+    compile "com.arello-mobile:moxy-app-compat:$moxy"
+
+    //Retrofit
+    compile "com.squareup.retrofit2:retrofit:$retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit"
+    compile "com.squareup.retrofit2:converter-gson:$converterGson"
+
+    //RxJava
+    compile "io.reactivex.rxjava2:rxjava:$rxjava2"
+    compile "io.reactivex.rxjava2:rxandroid:$rxjava2Android"
+
+    //Room
+    compile "android.arch.persistence.room:runtime:$room"
+    annotationProcessor "android.arch.persistence.room:compiler:$room"
+    compile "android.arch.persistence.room:rxjava2:$room"
+
+    testCompile "android.arch.persistence.room:testing:$room"
+
+    //Paging
+    compile "android.arch.paging:runtime:$paging"
+
+
+    //Dagger
+
+
+    //Utility
+    compile "com.jakewharton.timber:timber:$timber"
+    compile "com.jakewharton:butterknife:$butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife"
+
+    //Unit test
+    testCompile "junit:junit:$junit"
+    testCompile "org.mockito:mockito-all:$mockito"
+    testCompile "org.hamcrest:hamcrest-all:$hamcrest"
+    testCompile "org.powermock:powermock-module-junit4:$powerMock"
+    testCompile "org.powermock:powermock-api-mockito:$powerMock"
+
+    //Instrumental test
+    androidTestCompile "org.mockito:mockito-android:$mockitoAndroid"
+    androidTestCompile "com.android.support.test:runner:$runner"
+    androidTestCompile "com.android.support.test:rules:$runner"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$espresso"
+    androidTestCompile "com.android.support.test.espresso:espresso-contrib:$espresso"
+    androidTestCompile "com.android.support.test.espresso:espresso-intents:$espresso"
+    compile "com.android.support.test.espresso:espresso-idling-resource:$espresso"
+
+    //Resolution
+    configurations.all {
+        resolutionStrategy.force "com.android.support:support-annotations:$supportLibrary"
+        resolutionStrategy.force "com.android.support:support-v4:$supportLibrary"
+        resolutionStrategy.force "com.android.support:appcompat-v7:$supportLibrary"
+        resolutionStrategy.force "com.android.support:design:$supportLibrary"
+
+        resolutionStrategy.force "com.android.support:cardview-v7:$supportLibrary"
+        resolutionStrategy.force "com.android.support:recyclerview-v7:$supportLibrary"
+
+        resolutionStrategy.force "com.google.code.gson:gson:$gson"
+
+        resolutionStrategy.force "com.google.code.findbugs:jsr305:$jsr305"
+    }
+}
